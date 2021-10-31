@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <body>
+            <h1 id ="time">
+                My name is Mohamed Mohamed. 
+                My favorite hobby is gaming (video games, board games, card games, etc.) 
+                The current time is: <span id = "12time"></span> 
+            </h1>
+            <script>
+               const getCurrentTime = () => {
+                    let currentDate = new Date();
+                    let [hours, minutes, seconds] = [currentDate.getHours(), currentDate.getMinutes(), currentDate.getSeconds()]
+
+                    if (hours > 12) {
+                        hours -= 12
+                    }
+
+                    stringHours = hours.toString();
+                    stringMinutes = minutes.toString();
+                    stringSeconds = seconds.toString();
+
+                    if (stringHours < 10)
+                        stringHours = "0" + stringHours
+
+                    if (stringMinutes < 10)
+                        stringMinutes = "0" + stringMinutes
+
+                    if (stringSeconds < 10)
+                        stringSeconds = "0" + stringSeconds
+
+                    let currentTime = stringHours + ":" + stringMinutes + ":" + stringSeconds
+                    document.getElementById("12time").innerHTML = currentTime
+                }
+                
+                setInterval(getCurrentTime, 100)
+                
+            </script>
+        </body>
+    </head>
+</html>
+
+<!-- 
+    I don't have much experience with Date, so this took a while since I had to see what is the most 
+    effective strategy to come up with. Eventually I settled on the get methods for hours, minutes, and seconds.
+    Then I printed them out but I realized a problem: the get methods return the exact value, meaning that if 
+    the hour, minute, or second is single digit, then we won't have a zero in front of it.
+
+    To solve this, I decided to use an if condition to append a zero for single digit values. However, I'd need to 
+    convert these numbers to strings. That brought up another problem of concatenating values, because sometimes 
+    I'll be concatenating only strings, sometimes only integers, and sometimes a mix of both. To solve this, I 
+    converted all the return values to strings to keep the concatenation consistent (and to prevent a whole load 
+    of if conditions).
+
+    Suprisingly, the dynamic part was the easiest
+ -->
